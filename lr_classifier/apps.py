@@ -25,5 +25,5 @@ class LegalRuleClassificationAppConfig(AppConfig):
         with open('model/tokenizer_type.pickle', 'rb') as handle:
             self.tokenizer_type = pickle.load(handle)
 
-        self.max_sequence_length_moral = 10691
+        self.max_sequence_length_moral = 22042
         self.max_sequence_length_type = 22042

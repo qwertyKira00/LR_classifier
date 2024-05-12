@@ -1,3 +1,6 @@
+import json
+from json import JSONDecodeError
+
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
@@ -8,7 +11,14 @@ from .output import convert_predictions_to_output
 @csrf_exempt
 def input_view(request):
     if request.method == 'POST':
-        legal_rule_text = request.POST.get('legal_rule_text', '')
+        body = request.body
+        body = body.decode('utf-8')
+        try:
+            body = json.loads(body)
+        except JSONDecodeError:
+            return JsonResponse({'Ошибка': 'Неверное тело запроса'}, status=400)
+
+        legal_rule_text = body.get('texts', '')
         if legal_rule_text:
             moral_predictions, type_predictions = predict([legal_rule_text])
             return JsonResponse(

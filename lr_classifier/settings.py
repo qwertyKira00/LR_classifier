@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-nnsl_5ccfi5mr@_8ts1j9-%=)6wxx!q76n#+*^$#vshoerwly3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['llm24.event33.ru', '127.0.0.1']
+ALLOWED_HOSTS = ['llm24.event33.ru', 'npa.event33.ru']
 
 
 # Application definition
@@ -113,4 +113,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGINS = False
+
+CORS_ALLOWED_ORIGINS = [
+    'https://llm24.event33.ru',
+    'https://npa.event33.ru',
+]
